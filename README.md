@@ -1,4 +1,4 @@
-# GovSim FACT Group 33
+# [Re] Cooperatre or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents
 
 This repository extends the GovSim codebase originally developed by Piatti et al. (2024) for their paper "Cooperate or Collapse: Emergence of Sustainable Cooperation in a Society of LLM Agents."
 
