@@ -1,0 +1,44 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 17, in <module>
+    from .scenarios.fishing.run import run as run_scenario_fishing
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/fishing/run.py", line 10, in <module>
+    from .environment import FishingConcurrentEnv, FishingPerturbationEnv
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/fishing/environment/__init__.py", line 1, in <module>
+    from .env import FishingConcurrentEnv, FishingPerturbationEnv
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/fishing/environment/env.py", line 35
+    f"STRICT RULES:
+    ^
+SyntaxError: unterminated string literal (detected at line 35)
+
+JOB STATISTICS
+==============
+Job ID: 9598004
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:10
+CPU Efficiency: 2.31% of 00:07:12 core-walltime
+Job Wall-clock time: 00:00:24
+Memory Utilized: 2.33 MB
+Memory Efficiency: 0.00% of 120.00 GB

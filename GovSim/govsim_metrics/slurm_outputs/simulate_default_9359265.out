@@ -1,0 +1,14 @@
+
+JOB STATISTICS
+==============
+Job ID: 9359265
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:07
+CPU Efficiency: 2.68% of 00:04:21 core-walltime
+Job Wall-clock time: 00:00:29
+Memory Utilized: 2.06 MB
+Memory Efficiency: 0.00% of 60.00 GB

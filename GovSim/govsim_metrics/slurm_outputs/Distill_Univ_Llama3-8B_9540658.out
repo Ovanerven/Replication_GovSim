@@ -1,0 +1,2104 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+[2025-01-22 08:57:19,897][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.49s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.55s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_085728-nht8ro2v
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run ethereal-snowball-237
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/nht8ro2v
+Storage name: ethereal-snowball-237-nht8ro2v
+[2025-01-22 08:57:37,066][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 08:57:38,600][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi
+
+Returning default value in find
+  warnings.warn(
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/DeepSeek-R1-Distill-Llama-8B/ethereal-snowball-237/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁█▂█▇▇▇▇▅▃▄▄▄
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▂▃▄▅▅▆▇▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▁▂▂▂▂▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▃▄▅▆▇▇▇▇▇████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 0
+wandb:                  experiment/TFS 705.2028
+wandb:       experiment/TFS_cumulative 199.44438
+wandb:  experiment/token_in_cumulative 41941
+wandb: experiment/token_out_cumulative 9207
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 100
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 100
+wandb: 
+wandb: 🚀 View run ethereal-snowball-237 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/nht8ro2v
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_085728-nht8ro2v/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+[2025-01-22 09:02:08,726][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.52s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.58s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_090217-ft9n0buv
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dulcet-sun-242
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/ft9n0buv
+Storage name: dulcet-sun-242-ft9n0buv
+[2025-01-22 09:02:25,805][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:02:28,013][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi
+
+Returning default value in find
+  warnings.warn(
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/DeepSeek-R1-Distill-Llama-8B/dulcet-sun-242/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▂▃▁█▇█▇█▆▇▆▇▆
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▃▃▄▄▅▆▆▇▇█
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▃▃▃▃▄▄▅▅▆▆▇▇█
+wandb: experiment/token_out_cumulative ▁▃▄▆▇▇▇▇▇▇▇███████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 0
+wandb:                  experiment/TFS 721.97944
+wandb:       experiment/TFS_cumulative 169.32711
+wandb:  experiment/token_in_cumulative 29993
+wandb: experiment/token_out_cumulative 8401
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 100
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 100
+wandb: 
+wandb: 🚀 View run dulcet-sun-242 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/ft9n0buv
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_090217-ft9n0buv/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+[2025-01-22 09:06:26,883][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.50s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.55s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_090635-d51v0xyi
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fresh-oath-246
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/d51v0xyi
+Storage name: fresh-oath-246-d51v0xyi
+[2025-01-22 09:06:47,718][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:06:49,377][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi
+
+Returning default value in find
+  warnings.warn(
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/DeepSeek-R1-Distill-Llama-8B/fresh-oath-246/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▄▃▁▇█▆██▆▆█▆▆
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▂▃▄▄▅▅▆▇▇█
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▃▃▃▃▄▄▅▅▆▆▇▇█
+wandb: experiment/token_out_cumulative ▁▃▄▆▇▇▇▇▇▇▇▇██████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 0
+wandb:                  experiment/TFS 733.15012
+wandb:       experiment/TFS_cumulative 163.75465
+wandb:  experiment/token_in_cumulative 29238
+wandb: experiment/token_out_cumulative 8478
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 100
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 100
+wandb: 
+wandb: 🚀 View run fresh-oath-246 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/d51v0xyi
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_090635-d51v0xyi/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 150
+debug: false
+
+[2025-01-22 09:10:53,319][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.91s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.60s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_091102-rafzjq26
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run lemon-microwave-250
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/rafzjq26
+Storage name: lemon-microwave-250-rafzjq26
+[2025-01-22 09:11:10,544][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:11:12,083][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi
+
+Returning default value in find
+  warnings.warn(
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/DeepSeek-R1-Distill-Llama-8B/lemon-microwave-250/.hydra)... Done. 0.0s
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▂▃▁▅█▅▆▆▆▆▅▆▆
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▂▃▄▄▅▆▆▇▇█
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▃▃▃▃▄▄▅▅▆▆▇▇█
+wandb: experiment/token_out_cumulative ▁▃▄▆▇▇▇▇▇▇████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 0
+wandb:                  experiment/TFS 894.93251
+wandb:       experiment/TFS_cumulative 169.71132
+wandb:  experiment/token_in_cumulative 29973
+wandb: experiment/token_out_cumulative 8421
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 100
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 100
+wandb: 
+wandb: 🚀 View run lemon-microwave-250 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/rafzjq26
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_091102-rafzjq26/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 200
+debug: false
+
+[2025-01-22 09:15:12,769][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.58s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_091521-y5c3ln1r
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run cosmic-plant-253
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/y5c3ln1r
+Storage name: cosmic-plant-253-y5c3ln1r
+[2025-01-22 09:15:29,891][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:15:31,469][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  us wants to catch as much as possible, but we have to consider the impact on future months.
+
+If I catch too much now, the fish population might drop, leading to lower catches in the future.
+
+Alternatively, if I don't catch much now, the fish population might recover, allowing me to catch more in the future.
+
+But since we can communicate, we can agree on a strategy where we balance our catches so that the fish population remains at a certain level.
+
+Let me think about what happens
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  we can communicate at the end of the month, we can use the information from F' to adjust our strategies.
+
+Wait, but the communication happens after the catch, so we know F' at the end of the month, and can adjust our strategies for the next month based on that.
+
+This seems like a Markov process where the state is the current fish population, and the action is the amount each fisherman catches, which affects the next state.
+
+But with five players, it's a multi
+
+Returning default value in find
+  warnings.warn(
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/DeepSeek-R1-Distill-Llama-8B/cosmic-plant-253/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▂▇▇█▆▆▅▄▃▃▃
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▂▃▄▅▅▆▇▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▁▂▂▂▂▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▃▄▅▆▇▇▇▇▇▇███████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 0
+wandb:                  experiment/TFS 613.1948
+wandb:       experiment/TFS_cumulative 196.87765
+wandb:  experiment/token_in_cumulative 42153
+wandb: experiment/token_out_cumulative 9363
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 100
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 100
+wandb: 
+wandb: 🚀 View run cosmic-plant-253 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/y5c3ln1r
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_091521-y5c3ln1r/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+[2025-01-22 09:20:05,902][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.59s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_092014-7y1fzx1m
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run astral-aardvark-256
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/7y1fzx1m
+Storage name: astral-aardvark-256-7y1fzx1m
+[2025-01-22 09:20:22,898][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:20:24,457][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/sheep_v6.4/DeepSeek-R1-Distill-Llama-8B/astral-aardvark-256/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▁█▇█▇▇▄▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▁▂▃▄▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▇▇▇▇█████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 100
+wandb:                  experiment/TFS 1042.75597
+wandb:       experiment/TFS_cumulative 203.84369
+wandb:  experiment/token_in_cumulative 46983
+wandb: experiment/token_out_cumulative 7739
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 2
+wandb:    persona_2_collected_resource 200
+wandb:    persona_3_collected_resource 1
+wandb:    persona_4_collected_resource 15
+wandb: 
+wandb: 🚀 View run astral-aardvark-256 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/7y1fzx1m
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_092014-7y1fzx1m/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+[2025-01-22 09:25:06,705][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.89s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.59s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_092515-qje2ao54
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run atomic-shadow-260
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qje2ao54
+Storage name: atomic-shadow-260-qje2ao54
+[2025-01-22 09:25:23,752][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:25:25,399][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/sheep_v6.4/DeepSeek-R1-Distill-Llama-8B/atomic-shadow-260/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▁█▇█▇▇▄▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▂▃▄▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▇▇▇▇█████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 100
+wandb:                  experiment/TFS 1045.18477
+wandb:       experiment/TFS_cumulative 204.07455
+wandb:  experiment/token_in_cumulative 46973
+wandb: experiment/token_out_cumulative 7734
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 2
+wandb:    persona_2_collected_resource 200
+wandb:    persona_3_collected_resource 1
+wandb:    persona_4_collected_resource 15
+wandb: 
+wandb: 🚀 View run atomic-shadow-260 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qje2ao54
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_092515-qje2ao54/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+[2025-01-22 09:30:07,216][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.59s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_093016-catcoi9o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run good-dust-263
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/catcoi9o
+Storage name: good-dust-263-catcoi9o
+[2025-01-22 09:30:24,383][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:30:25,798][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/sheep_v6.4/DeepSeek-R1-Distill-Llama-8B/good-dust-263/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▁█▇█▇▇▂▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▁▂▃▄▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▇▇▇▇▇▇▇██████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 100
+wandb:                  experiment/TFS 1049.16721
+wandb:       experiment/TFS_cumulative 200.98415
+wandb:  experiment/token_in_cumulative 47258
+wandb: experiment/token_out_cumulative 7866
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 2
+wandb:    persona_2_collected_resource 200
+wandb:    persona_3_collected_resource 1
+wandb:    persona_4_collected_resource 15
+wandb: 
+wandb: 🚀 View run good-dust-263 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/catcoi9o
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_093016-catcoi9o/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 150
+debug: false
+
+[2025-01-22 09:35:14,031][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.84s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.51s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.56s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_093522-z3w03og8
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fancy-fog-267
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z3w03og8
+Storage name: fancy-fog-267-z3w03og8
+[2025-01-22 09:35:31,048][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:35:32,742][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/sheep_v6.4/DeepSeek-R1-Distill-Llama-8B/fancy-fog-267/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▁█▇█▇▇▄▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▂▃▄▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▇▇▇▇█████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 100
+wandb:                  experiment/TFS 1037.17822
+wandb:       experiment/TFS_cumulative 203.00747
+wandb:  experiment/token_in_cumulative 46975
+wandb: experiment/token_out_cumulative 7736
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 2
+wandb:    persona_2_collected_resource 200
+wandb:    persona_3_collected_resource 1
+wandb:    persona_4_collected_resource 15
+wandb: 
+wandb: 🚀 View run fancy-fog-267 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z3w03og8
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_093522-z3w03og8/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 200
+debug: false
+
+[2025-01-22 09:40:15,602][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.67s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_094024-6qj2ye53
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run lively-wave-270
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/6qj2ye53
+Storage name: lively-wave-270-6qj2ye53
+[2025-01-22 09:40:33,012][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:40:34,810][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/sheep_v6.4/DeepSeek-R1-Distill-Llama-8B/lively-wave-270/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▁▇▁█▇█▇▇▄▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▁▂▃▄▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▇▇▇▇█████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 100
+wandb:                  experiment/TFS 1023.92592
+wandb:       experiment/TFS_cumulative 200.57296
+wandb:  experiment/token_in_cumulative 46977
+wandb: experiment/token_out_cumulative 7733
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 2
+wandb:    persona_2_collected_resource 200
+wandb:    persona_3_collected_resource 1
+wandb:    persona_4_collected_resource 15
+wandb: 
+wandb: 🚀 View run lively-wave-270 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/6qj2ye53
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_094024-6qj2ye53/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+[2025-01-22 09:45:21,491][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.97s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.66s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_094530-kng9pcal
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fluent-spaceship-272
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/kng9pcal
+Storage name: fluent-spaceship-272-kng9pcal
+[2025-01-22 09:45:38,779][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:45:40,466][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  N/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  N/A
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/pollution_v6.4/DeepSeek-R1-Distill-Llama-8B/fluent-spaceship-272/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▁▁▆▁█▇█▇█▅▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▂▃▄▅▆▇▇▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▃▃▃▄▅▅▆▇▇▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▄▅▇▇███████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 1005.40384
+wandb:       experiment/TFS_cumulative 188.26776
+wandb:  experiment/token_in_cumulative 40985
+wandb: experiment/token_out_cumulative 7970
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 2
+wandb:    persona_1_collected_resource 100
+wandb:    persona_2_collected_resource 120
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 0
+wandb: 
+wandb: 🚀 View run fluent-spaceship-272 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/kng9pcal
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_094530-kng9pcal/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+[2025-01-22 09:50:15,200][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.63s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_095024-u66yzi40
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run vocal-deluge-275
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/u66yzi40
+Storage name: vocal-deluge-275-u66yzi40
+[2025-01-22 09:50:32,447][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:50:33,839][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  N/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  N/A
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/pollution_v6.4/DeepSeek-R1-Distill-Llama-8B/vocal-deluge-275/.hydra)... Done. 0.0s
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▁▃▁▆▂█▇█▇█▅▅▅▅▅
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▂▃▄▅▆▇▇▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▃▃▃▄▅▅▆▇▇▇███
+wandb: experiment/token_out_cumulative ▁▂▃▄▆▆▇▇███████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 892.76562
+wandb:       experiment/TFS_cumulative 199.25802
+wandb:  experiment/token_in_cumulative 44063
+wandb: experiment/token_out_cumulative 7715
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 2
+wandb:    persona_1_collected_resource 100
+wandb:    persona_2_collected_resource 120
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 0
+wandb: 
+wandb: 🚀 View run vocal-deluge-275 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/u66yzi40
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_095024-u66yzi40/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+[2025-01-22 09:55:09,452][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.88s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.52s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.57s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_095518-9nt6ctn9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run mild-salad-278
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/9nt6ctn9
+Storage name: mild-salad-278-9nt6ctn9
+[2025-01-22 09:55:26,675][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:55:28,260][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in  N/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in  N/A
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/pollution_v6.4/DeepSeek-R1-Distill-Llama-8B/mild-salad-278/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▁▃▃▁▇▇▇▇▇▇▇▇▆█
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▃▃▄▅▆▆▇▇██
+wandb:  experiment/token_in_cumulative ▁▁▂▂▃▃▃▃▄▄▅▅▆▆▇▇██
+wandb: experiment/token_out_cumulative ▁▂▄▅▇▇▇▇▇█████████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 1148.38731
+wandb:       experiment/TFS_cumulative 160.17875
+wandb:  experiment/token_in_cumulative 28032
+wandb: experiment/token_out_cumulative 6498
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 2
+wandb:    persona_1_collected_resource 100
+wandb:    persona_2_collected_resource 120
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 0
+wandb: 
+wandb: 🚀 View run mild-salad-278 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/9nt6ctn9
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_095518-9nt6ctn9/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 150
+debug: false
+
+[2025-01-22 09:59:17,870][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.64s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_095926-8fewjwuy
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run lively-durian-280
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/8fewjwuy
+Storage name: lively-durian-280-8fewjwuy
+[2025-01-22 09:59:35,137][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 09:59:36,693][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/pollution_v6.4/DeepSeek-R1-Distill-Llama-8B/lively-durian-280/.hydra)... Done. 0.0s
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▂▁▂▃▂█▁▃▃▃▃▃▁▂▂▂▂
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▁▂▃▄▆▆▆▆▇▇██▇▇▇▇▇
+wandb:  experiment/token_in_cumulative ▁▁▁▁▂▂▂▃▄▅▅▅▅▆▆▆▇▇▇███
+wandb: experiment/token_out_cumulative ▁▂▃▄▅▅▅▅▆▆▆▆▆▆▆▆▆█████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 8
+wandb:                  experiment/TFS 1122.08668
+wandb:       experiment/TFS_cumulative 267.25566
+wandb:  experiment/token_in_cumulative 88598
+wandb: experiment/token_out_cumulative 9686
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 2
+wandb:    persona_1_collected_resource 100
+wandb:    persona_2_collected_resource 120
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 0
+wandb: 
+wandb: 🚀 View run lively-durian-280 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/8fewjwuy
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_095926-8fewjwuy/logs
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 200
+debug: false
+
+[2025-01-22 10:06:02,470][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.24s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250122_100612-bbwbud7k
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run woven-feather-282
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/bbwbud7k
+Storage name: woven-feather-282-bbwbud7k
+[2025-01-22 10:06:21,048][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-22 10:06:22,491][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/pollution_v6.4/DeepSeek-R1-Distill-Llama-8B/woven-feather-282/.hydra)... Done. 0.0s
+wandb: - 0.017 MB of 0.017 MB uploadedwandb: \ 0.017 MB of 0.017 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: | 0.017 MB of 0.017 MB uploadedwandb: / 0.017 MB of 0.017 MB uploadedwandb: - 0.017 MB of 0.017 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁
+wandb:                  experiment/TFS ▁▁▁▁▁▃▃▁▇█▇▆▇▇▇▇▇█
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▂▃▄▄▅▅▆▇▇█
+wandb:  experiment/token_in_cumulative ▁▁▂▂▃▃▃▃▄▄▄▅▅▆▆▇▇█
+wandb: experiment/token_out_cumulative ▁▂▄▅▇▇▇▇▇▇▇███████
+wandb:                    num_resource ████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁
+wandb:    persona_1_collected_resource ▁
+wandb:    persona_2_collected_resource ▁
+wandb:    persona_3_collected_resource ▁
+wandb:    persona_4_collected_resource ▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 10
+wandb:                  experiment/TFS 1051.24932
+wandb:       experiment/TFS_cumulative 174.23198
+wandb:  experiment/token_in_cumulative 32765
+wandb: experiment/token_out_cumulative 6511
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 2
+wandb:    persona_1_collected_resource 100
+wandb:    persona_2_collected_resource 120
+wandb:    persona_3_collected_resource 100
+wandb:    persona_4_collected_resource 0
+wandb: 
+wandb: 🚀 View run woven-feather-282 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/bbwbud7k
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250122_100612-bbwbud7k/logs
+
+JOB STATISTICS
+==============
+Job ID: 9540658
+Cluster: snellius
+User/Group: overven/overven
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 01:32:44
+CPU Efficiency: 14.06% of 10:59:33 core-walltime
+Job Wall-clock time: 01:13:17
+Memory Utilized: 6.32 GB
+Memory Efficiency: 10.53% of 60.00 GB

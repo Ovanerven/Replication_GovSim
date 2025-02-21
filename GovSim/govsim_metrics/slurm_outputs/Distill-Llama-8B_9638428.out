@@ -1,0 +1,1561 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_universalization
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: true
+    inject_systemic: false
+    inject_veilofignorance: false
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Univ_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 1
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 03:35:04,671][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:10<00:10, 10.10s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.18s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.32s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_033525-qvxwqylb
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run tough-energy-606
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qvxwqylb
+Storage name: tough-energy-606-qvxwqylb
+[2025-01-28 03:35:34,694][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 03:35:37,078][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was mentioned in the conversation. The mayor reported the catches but did not state any limit. John referred to a perceived agreement but there was no direct confirmation from others. \n\nN/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was mentioned in the conversation. The mayor reported the catches but did not state any limit. John referred to a perceived agreement but there was no direct confirmation from others. \n\nN/A
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N tons
+
+Returning default value in find
+  warnings.warn(
+Token indices sequence length is longer than the specified maximum sequence length for this model (17525 > 16384). Running this sequence through the model will result in indexing errors
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in : Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/Univ_DeepSeek-R1-Distill-Llama-8B/tough-energy-606/.hydra)... Done. 2.9s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+wandb: - 0.033 MB of 0.033 MB uploadedwandb: \ 0.033 MB of 0.033 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: | 0.033 MB of 0.033 MB uploadedwandb: / 0.033 MB of 0.033 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ███▁█▂
+wandb:                  experiment/TFS ▁▁▂▂▂▁▁█▂▂▁▁▁▁▃▃▂▁▂▁▂▁▂▁▂▆▇▁▇▁▁▂▂▁▃▁▂▂▂▁
+wandb:       experiment/TFS_cumulative ▁▂▂▃▅▅▅▅▅▅▆▅▆▅▆▆▇▇▇▇▇▇▇▇▇▆▇█████████████
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▃▃▃▃▃▃▃▄▄▄▅▆▇▇▇▇▇▇▇▇█████
+wandb: experiment/token_out_cumulative ▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▃▃▄▄▄▄▄▅▅▇▇▇▇▇▇▇▇▇██████
+wandb:                    num_resource ███▅▅▅██▅▅▅███▅▅▅██▅▅▅▅██▅▅▅███▂▂▂▂▂▁▁▁▁
+wandb:    persona_0_collected_resource ██████▁
+wandb:    persona_1_collected_resource ▁▁▁▁▁▁▁
+wandb:    persona_2_collected_resource ▁▁▁▁▁█▁
+wandb:    persona_3_collected_resource ████▁█▂
+wandb:    persona_4_collected_resource ███▁██▂
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 2
+wandb:                  experiment/TFS 356.35108
+wandb:       experiment/TFS_cumulative 344.83173
+wandb:  experiment/token_in_cumulative 677837
+wandb: experiment/token_out_cumulative 61389
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 10
+wandb:    persona_2_collected_resource 10
+wandb:    persona_3_collected_resource 2
+wandb:    persona_4_collected_resource 2
+wandb: 
+wandb: 🚀 View run tough-energy-606 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qvxwqylb
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_033525-qvxwqylb/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_universalization
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: true
+    inject_systemic: false
+    inject_veilofignorance: false
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Univ_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 42
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 04:11:39,124][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:10<00:10, 10.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.29s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.43s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_041159-63g22y61
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fast-puddle-607
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/63g22y61
+Storage name: fast-puddle-607-63g22y61
+[2025-01-28 04:12:08,680][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 04:12:11,206][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in No explicit agreement on a numerical fishing limit was made during the conversation. The participants discussed their catches but did not agree on a specific limit for future fishing.\n: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in No explicit agreement on a numerical fishing limit was made during the conversation. The participants discussed their catches but did not agree on a specific limit for future fishing.\n
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N tons
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached during the conversation. The participants discussed the current catches but did not agree on a specific numerical limit for future fishing activities.\n\n
+
+Answer: No explicit agreement on a concrete fishing limit was reached.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached during the conversation. The participants discussed the current catches but did not agree on a specific numerical limit for future fishing activities.\n\n
+
+Answer: No explicit agreement on a concrete fishing limit was reached.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in Based on the conversation, there was no explicit numerical agreement on a specific fishing limit. The participants discussed the impact of their catches on the fish population but did not reach a concrete limit. Therefore, no specific fishing limit was agreed upon.
+
+\boxed{\text{N/A}}: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in Based on the conversation, there was no explicit numerical agreement on a specific fishing limit. The participants discussed the impact of their catches on the fish population but did not reach a concrete limit. Therefore, no specific fishing limit was agreed upon.
+
+\boxed{\text{N/A}}
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in : Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in No explicit agreement on a numerical catch limit was made during the conversation.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in No explicit agreement on a numerical catch limit was made during the conversation.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+Token indices sequence length is longer than the specified maximum sequence length for this model (17043 > 16384). Running this sequence through the model will result in indexing errors
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: WARNING Serializing object of type str that is 153928 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nN/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nN/A
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/Univ_DeepSeek-R1-Distill-Llama-8B/fast-puddle-607/.hydra)... Done. 0.0s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+wandb: - 0.033 MB of 0.033 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: \ 0.033 MB of 0.033 MB uploadedwandb: | 0.033 MB of 0.103 MB uploadedwandb: / 0.117 MB of 0.117 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▁▁▁▁▁▁▁
+wandb:                  experiment/TFS ▁▁▃▁▁▁▁▁▂▃▁▄▃▁▂▂▁█▂▂▂▆▂▇▁▂▃▁▂▁▅▃▃▁▂▂▂▁▇▁
+wandb:       experiment/TFS_cumulative ▁▁▄▅▅▅▆▆▆▇▆▆▇▇▇▇▇▇▇▇▆▆▇████▆▆▆▆▆▆▃▃▃▃▄▄▄
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▃▃▃▃▃▃▃▄▄▄▄▄▄▅▅▅▅▅▅▅▆▆▆▇█
+wandb: experiment/token_out_cumulative ▁▁▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▃▃▃▃▃▄▄▄▅▅▅▇▇▇▇▇██
+wandb:                    num_resource ██▁██▁██▁▁█▁▁██▁▁█▂▂█▁▁█▂▂██▂▂█▁▁██▂██▁█
+wandb:    persona_0_collected_resource ██████████▁█
+wandb:    persona_1_collected_resource ▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:    persona_2_collected_resource █████▁██████
+wandb:    persona_3_collected_resource ███████▁████
+wandb:    persona_4_collected_resource ████████▁███
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 10
+wandb:                  experiment/TFS 1032.31026
+wandb:       experiment/TFS_cumulative 223.58292
+wandb:  experiment/token_in_cumulative 1059680
+wandb: experiment/token_out_cumulative 136330
+wandb:                    num_resource 100
+wandb:    persona_0_collected_resource 10
+wandb:    persona_1_collected_resource 10
+wandb:    persona_2_collected_resource 10
+wandb:    persona_3_collected_resource 10
+wandb:    persona_4_collected_resource 10
+wandb: 
+wandb: 🚀 View run fast-puddle-607 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/63g22y61
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_041159-63g22y61/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_universalization
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: true
+    inject_systemic: false
+    inject_veilofignorance: false
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Univ_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 100
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 05:41:35,488][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:10<00:10, 10.25s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.26s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.41s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_054156-j96tkxkw
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run super-frost-609
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/j96tkxkw
+Storage name: super-frost-609-j96tkxkw
+[2025-01-28 05:42:04,827][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 05:42:07,686][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in : Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nThere was no explicit agreement on a concrete fishing limit during the conversation. The discussion focused on the total catches and the need for sustainable fishing practices but did not specify a numerical limit that the group agreed upon.\n: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nThere was no explicit agreement on a concrete fishing limit during the conversation. The discussion focused on the total catches and the need for sustainable fishing practices but did not specify a numerical limit that the group agreed upon.\n
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: WARNING Serializing object of type str that is 131880 bytes
+wandb: WARNING Serializing object of type str that is 129058 bytes
+Token indices sequence length is longer than the specified maximum sequence length for this model (19874 > 16384). Running this sequence through the model will result in indexing errors
+wandb: WARNING Serializing object of type str that is 183288 bytes
+wandb: WARNING Serializing object of type str that is 174922 bytes
+wandb: WARNING Serializing object of type str that is 173792 bytes
+wandb: WARNING Serializing object of type str that is 165572 bytes
+wandb: WARNING Serializing object of type str that is 177254 bytes
+wandb: WARNING Serializing object of type str that is 166604 bytes
+wandb: WARNING Serializing object of type str that is 166654 bytes
+wandb: WARNING Serializing object of type str that is 176432 bytes
+wandb: WARNING Serializing object of type str that is 167978 bytes
+wandb: WARNING Serializing object of type str that is 176308 bytes
+wandb: WARNING Serializing object of type str that is 167966 bytes
+wandb: WARNING Serializing object of type str that is 176184 bytes
+wandb: WARNING Serializing object of type str that is 167978 bytes
+wandb: WARNING Serializing object of type str that is 176340 bytes
+wandb: WARNING Serializing object of type str that is 167966 bytes
+wandb: WARNING Serializing object of type str that is 176424 bytes
+wandb: WARNING Serializing object of type str that is 167978 bytes
+wandb: WARNING Serializing object of type str that is 176348 bytes
+wandb: WARNING Serializing object of type str that is 167966 bytes
+wandb: WARNING Serializing object of type str that is 176442 bytes
+wandb: WARNING Serializing object of type str that is 167978 bytes
+wandb: WARNING Serializing object of type str that is 176562 bytes
+wandb: WARNING Serializing object of type str that is 167966 bytes
+wandb: WARNING Serializing object of type str that is 176174 bytes
+wandb: WARNING Serializing object of type str that is 167978 bytes
+wandb: WARNING Serializing object of type str that is 176324 bytes
+wandb: WARNING Serializing object of type str that is 167966 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N tons
+
+Returning default value in find
+  warnings.warn(
+wandb: WARNING Serializing object of type str that is 185017 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N tons
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached in the conversation. The participants discussed the need for sustainable practices and setting a limit but did not specify any numerical values or per-person catch limits.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached in the conversation. The participants discussed the need for sustainable practices and setting a limit but did not specify any numerical values or per-person catch limits.
+
+Returning default value in find
+  warnings.warn(
+wandb: WARNING Serializing object of type str that is 281613 bytes
+wandb: WARNING Serializing object of type str that is 173602 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N tons
+
+Returning default value in find
+  warnings.warn(
+wandb: WARNING Serializing object of type str that is 188538 bytes
+wandb: WARNING Serializing object of type str that is 173764 bytes
+wandb: WARNING Serializing object of type str that is 173799 bytes
+wandb: WARNING Serializing object of type str that is 281675 bytes
+wandb: WARNING Serializing object of type str that is 173705 bytes
+wandb: WARNING Serializing object of type str that is 173714 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: WARNING Serializing object of type str that is 189049 bytes
+wandb: WARNING Serializing object of type str that is 173843 bytes
+wandb: WARNING Serializing object of type str that is 174282 bytes
+wandb: WARNING Serializing object of type str that is 189740 bytes
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N/A
+\n: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N/A
+\n
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in **
+
+Insight: The fishermen prioritize individual income over the lake's sustainability, as Kate, Jack, Emma, and Luke are not as concerned about sustainability as John is.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in **
+
+Insight: The fishermen prioritize individual income over the lake's sustainability, as Kate, Jack, Emma, and Luke are not as concerned about sustainability as John is.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nAfter reviewing the conversation, there was no explicit agreement on a concrete fishing limit. John proposed the idea of limiting catches for sustainability but did not specify a numerical limit. The conversation did not include a discussion or agreement on a particular number, so the answer is N/A.
+\n\n
+Answer: N/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nAfter reviewing the conversation, there was no explicit agreement on a concrete fishing limit. John proposed the idea of limiting catches for sustainability but did not specify a numerical limit. The conversation did not include a discussion or agreement on a particular number, so the answer is N/A.
+\n\n
+Answer: N/A
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py:296: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  pd.concat(self.df_acc).to_json(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/Univ_DeepSeek-R1-Distill-Llama-8B/super-frost-609/.hydra)... Done. 0.0s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+wandb: - 0.033 MB of 0.033 MB uploadedwandb: \ 0.033 MB of 0.033 MB uploadedwandb: | 0.033 MB of 0.033 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: / 0.033 MB of 0.033 MB uploadedwandb: - 0.033 MB of 0.033 MB uploadedwandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit ▂▂▂▂█▁▂
+wandb:                  experiment/TFS ▁▁▁▃▁▁▂▁▃▂▁▇▃▅▂▆▂▂▂▂▂▁▂▁▁▂▁▁▃▁▄▂▃█▅▂▂▂▂▁
+wandb:       experiment/TFS_cumulative ▁▁▅█▇▆▆▄▄▅▂▂▂▃▄▄▄▄▃▄▄▄▄▃▃▃▂▂▂▃▂▂▂▃▃▃▃▃▃▃
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▁▁▁▂▂▂▂▂▃▃▃▃▃▃▃▃▃▃▄▄▄▄▅▅▅▆▆▆▆▇█████
+wandb: experiment/token_out_cumulative ▁▁▁▁▁▁▁▂▂▂▂▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇██████
+wandb:                    num_resource ██▃██▃██▃▃█▃▃██▃▃█▃▃█▄▄█▄▄██▄▄█▁▁▆▆▁▅▅▂▆
+wandb:    persona_0_collected_resource ██████████▇▁
+wandb:    persona_1_collected_resource ████████▁██▆
+wandb:    persona_2_collected_resource ▂▂▂▂▂▂▂▂▂█▁▂
+wandb:    persona_3_collected_resource ██████▁▁███▆
+wandb:    persona_4_collected_resource ██████████▃▁
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 440.96831
+wandb:       experiment/TFS_cumulative 182.6333
+wandb:  experiment/token_in_cumulative 2203747
+wandb: experiment/token_out_cumulative 276552
+wandb:                    num_resource 82
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 7
+wandb:    persona_2_collected_resource 10
+wandb:    persona_3_collected_resource 7
+wandb:    persona_4_collected_resource 7
+wandb: 
+wandb: 🚀 View run super-frost-609 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/j96tkxkw
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_054156-j96tkxkw/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_veilofignorance
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_systemic: false
+    inject_veilofignorance: true
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 1
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 09:28:47,351][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:10<00:10, 10.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.26s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:18<00:00,  9.41s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_092908-7ouuh48o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run breezy-oath-614
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/7ouuh48o
+Storage name: breezy-oath-614-7ouuh48o
+[2025-01-28 09:29:17,421][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 09:29:20,158][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in 
+
+The participants did not explicitly agree on a concrete fishing limit. No direct mention or numerical catch limit was discussed in the conversation provided. \n\nN/A
+****: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+The participants did not explicitly agree on a concrete fishing limit. No direct mention or numerical catch limit was discussed in the conversation provided. \n\nN/A
+****
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in : Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit agreement on a numerical fishing limit was found in the conversation. The discussion focused on reporting past catches rather than setting limits.\n: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit agreement on a numerical fishing limit was found in the conversation. The discussion focused on reporting past catches rather than setting limits.\n
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B/breezy-oath-614/.hydra)... Done. 0.0s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▁▁▂▃▃▃▃▃▃▁▁▁▁▁▂▁▁▆█▅▁▁▂▂▂▂▂▁▂▄▂▂
+wandb:       experiment/TFS_cumulative ▁▁▁▁▂▂▂▂▃▃▄▅▅▆▆▆▆▇▇▆▆▇▇▇▇▇▇▇███▄▄▅▅▅
+wandb:  experiment/token_in_cumulative ▁▁▂▂▂▂▂▂▂▂▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▅▅▆▆▆▆▆▇███
+wandb: experiment/token_out_cumulative ▁▂▂▂▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▄▄▄▄▄▄▄▄▄▄▄▄█████
+wandb:                    num_resource ████▄▄▄▄▄▄█████▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource █▁
+wandb:    persona_1_collected_resource █▁
+wandb:    persona_2_collected_resource █▁
+wandb:    persona_3_collected_resource █▁
+wandb:    persona_4_collected_resource ▁█
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 502.75338
+wandb:       experiment/TFS_cumulative 108.02584
+wandb:  experiment/token_in_cumulative 114044
+wandb: experiment/token_out_cumulative 42245
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 0
+wandb:    persona_1_collected_resource 9
+wandb:    persona_2_collected_resource 0
+wandb:    persona_3_collected_resource 0
+wandb:    persona_4_collected_resource 94
+wandb: 
+wandb: 🚀 View run breezy-oath-614 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/7ouuh48o
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_092908-7ouuh48o/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_veilofignorance
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_systemic: false
+    inject_veilofignorance: true
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 42
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 09:53:52,604][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.65s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_095401-ehsm6oz2
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fine-energy-615
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/ehsm6oz2
+Storage name: fine-energy-615-ehsm6oz2
+[2025-01-28 09:54:09,876][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 09:54:11,495][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached during the conversation. The participants discussed the impact of their catches on the fish population and suggested the need for a balanced approach, but no specific numerical limit was proposed or agreed upon.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit agreement on a concrete fishing limit was reached during the conversation. The participants discussed the impact of their catches on the fish population and suggested the need for a balanced approach, but no specific numerical limit was proposed or agreed upon.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in 
+
+In the conversation, there was no explicit numerical agreement on a concrete fishing limit. The participants discussed their catches and the lake's replenishment but did not reach a specific limit to keep. Therefore, no fishing limit was explicitly agreed upon.
+
+Answer: N/A.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in 
+
+In the conversation, there was no explicit numerical agreement on a concrete fishing limit. The participants discussed their catches and the lake's replenishment but did not reach a specific limit to keep. Therefore, no fishing limit was explicitly agreed upon.
+
+Answer: N/A.
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B/fine-energy-615/.hydra)... Done. 0.0s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+wandb: - 0.033 MB of 0.033 MB uploadedwandb: \ 0.033 MB of 0.033 MB uploadedwandb: | 0.033 MB of 0.033 MB uploadedwandb: / 0.033 MB of 0.033 MB uploadedwandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.033 MB of 0.033 MB uploadedwandb: \ 0.033 MB of 0.033 MB uploadedwandb: | 0.033 MB of 0.033 MB uploadedwandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▁▁▂▂▃▂▃▂▂▁▁▁▃▁▁█▁▁▁▁▄▃▂▃▃▃▃▃▃▃▃▃▂▂▁▁
+wandb:       experiment/TFS_cumulative ▁▁▁▁▁▂▂▂▂▃▃▃▄▄▄▄▄▃▃▄▃▃▃▃▄▄▄▅▅▆▆▆▆▇▇▇▇███
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▆▆▆▆▆▇▇▇██
+wandb: experiment/token_out_cumulative ▁▂▃▃▄▄▄▄▄▄▄▄▄▄▅▅▅▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇███
+wandb:                    num_resource ████▄▄▄▄▄▄▆▆▆▆▆▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁█
+wandb:    persona_1_collected_resource ▁█
+wandb:    persona_2_collected_resource ▁█
+wandb:    persona_3_collected_resource █▁
+wandb:    persona_4_collected_resource ▁▁
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 383.48544
+wandb:       experiment/TFS_cumulative 247.17936
+wandb:  experiment/token_in_cumulative 235316
+wandb: experiment/token_out_cumulative 33640
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 12
+wandb:    persona_1_collected_resource 76
+wandb:    persona_2_collected_resource 20
+wandb:    persona_3_collected_resource 5
+wandb:    persona_4_collected_resource 20
+wandb: 
+wandb: 🚀 View run fine-energy-615 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/ehsm6oz2
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_095401-ehsm6oz2/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent_veilofignorance
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_systemic: false
+    inject_veilofignorance: true
+    inject_scenario_dynamic: false
+    inject_universalization_alternative: false
+    inject_distill: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: concise
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.7
+  top_p: 0.95
+seed: 100
+debug: false
+
+Selected template class: DeepSeek_Llama
+[2025-01-28 10:12:34,617][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.63s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250128_101243-vbm3m6mr
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run vocal-eon-616
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/vbm3m6mr
+Storage name: vocal-eon-616-vbm3m6mr
+[2025-01-28 10:12:51,771][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-28 10:12:53,446][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
+From v4.47 onwards, when a model cache is to be returned, `generate` will return a `Cache` instance instead by default (as opposed to the legacy tuple of tuples format). If you want to keep returning the legacy format, please set `return_legacy_cache=True`.
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in Answer: N/A: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in Answer: N/A
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in X tons: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in X tons
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in \nNo explicit fishing limit was agreed upon in the conversation.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in \nNo explicit fishing limit was agreed upon in the conversation.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in No explicit agreement on a concrete fishing limit was mentioned in the conversation.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in No explicit agreement on a concrete fishing limit was mentioned in the conversation.
+
+Returning default value in find
+  warnings.warn(
+/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in **  
+No explicit agreement on a concrete fishing limit was mentioned in the conversation. The participants discussed the variability in catches and strategies for sustainability but did not specify a numerical limit. Therefore, the answer is N/A.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/pathfinder/library/model.py", line 284, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in **  
+No explicit agreement on a concrete fishing limit was mentioned in the conversation. The participants discussed the variability in catches and strategies for sustainability but did not specify a numerical limit. Therefore, the answer is N/A.
+
+Returning default value in find
+  warnings.warn(
+Token indices sequence length is longer than the specified maximum sequence length for this model (17484 > 16384). Running this sequence through the model will result in indexing errors
+wandb: WARNING Serializing object of type str that is 191909 bytes
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim_v2/simulation/results/fishing_v6.4/VeilOfIgnorance_DeepSeek-R1-Distill-Llama-8B/vocal-eon-616/.hydra)... Done. 0.0s
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to EOS token: 128001
+Stopped due to reaching max_tokens: 16384
+Stopped due to reaching max_tokens: 16384
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:                  experiment/TFS ▁▁▁▁▃▃▂▁▁▁▁▁▁▂▂▂▂▁▁▁▆▂▁▄▂▂▂▁▁▁▁█▂▃▂▂▂▁▂▁
+wandb:       experiment/TFS_cumulative ▁▁▂▂▃▄▆▆▆▆▆▇▅▅▅▆▆▇▇▄▄▄▄▄▄▅▅▅▆▆▆▆▆▇▇▇███▄
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▂▂▂▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▆▇█
+wandb: experiment/token_out_cumulative ▁▁▁▂▂▂▂▂▂▂▂▂▃▃▃▃▃▃▃▄▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅█
+wandb:                    num_resource ████▅▅▅▅▅▅████▅▅▅▅▅▅████▂▂▂▂▂▂▄▄▄▄▁▁▁▁▁▁
+wandb:    persona_0_collected_resource ▁█▅█
+wandb:    persona_1_collected_resource █▁▁▁
+wandb:    persona_2_collected_resource █▁█▂
+wandb:    persona_3_collected_resource ▂▁█▂
+wandb:    persona_4_collected_resource ▅█▁█
+wandb: 
+wandb: Run summary:
+wandb:                  experiment/TFS 455.70845
+wandb:       experiment/TFS_cumulative 100.95384
+wandb:  experiment/token_in_cumulative 278279
+wandb: experiment/token_out_cumulative 87943
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 20
+wandb:    persona_1_collected_resource 0
+wandb:    persona_2_collected_resource 4
+wandb:    persona_3_collected_resource 10
+wandb:    persona_4_collected_resource 20
+wandb: 
+wandb: 🚀 View run vocal-eon-616 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/vbm3m6mr
+wandb: Synced 7 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250128_101243-vbm3m6mr/logs
+
+JOB STATISTICS
+==============
+Job ID: 9638428
+Cluster: snellius
+User/Group: overven/overven
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 08:44:14
+CPU Efficiency: 6.35% of 5-17:40:12 core-walltime
+Job Wall-clock time: 07:38:54
+Memory Utilized: 8.29 GB
+Memory Efficiency: 6.91% of 120.00 GB

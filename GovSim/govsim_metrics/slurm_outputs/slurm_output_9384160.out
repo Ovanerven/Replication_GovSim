@@ -1,0 +1,36 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+
+CondaError: Run 'conda init' before 'conda activate'
+
+/var/spool/slurm/slurmd/job9384160/slurm_script: line 23: meta-llama/Llama-2-7b-chat-hf: No such file or directory
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]Downloading shards:  50%|█████     | 1/2 [00:47<00:47, 47.46s/it]Downloading shards: 100%|██████████| 2/2 [01:03<00:00, 29.01s/it]Downloading shards: 100%|██████████| 2/2 [01:03<00:00, 31.78s/it]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.80s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.54s/it]
+Model and tokenizer downloaded successfully.
+
+JOB STATISTICS
+==============
+Job ID: 9384160
+Cluster: snellius
+User/Group: overven/overven
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:53
+CPU Efficiency: 6.07% of 00:14:33 core-walltime
+Job Wall-clock time: 00:01:37
+Memory Utilized: 463.20 MB
+Memory Efficiency: 0.75% of 60.00 GB

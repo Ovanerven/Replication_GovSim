@@ -1,0 +1,20 @@
+CUDA available: True
+
+Step 1: Loading tokenizer...
+Tokenizer loaded successfully!
+
+Step 2: Loading model...
+
+JOB STATISTICS
+==============
+Job ID: 9515520
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:14
+CPU Efficiency: 4.58% of 00:05:06 core-walltime
+Job Wall-clock time: 00:00:17
+Memory Utilized: 2.27 MB
+Memory Efficiency: 0.00% of 60.00 GB

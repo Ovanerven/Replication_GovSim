@@ -1,0 +1,6 @@
+defaults:
+  - sheep_baseline_concurrent
+
+env:
+  name: sheep_baseline_concurrent_distill
+  inject_distill: false

@@ -1,0 +1,1131 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Meta-Llama-3-8B-Instruct
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+Selected template class: Llama3Chat
+[2025-01-26 20:07:13,902][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:11<00:11,  5.83s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:17<00:05,  5.73s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.67s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_200734-z7c3se9p
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run legendary-wave-466
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z7c3se9p
+Storage name: legendary-wave-466-z7c3se9p
+[2025-01-26 20:07:43,244][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:07:46,379][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a', 'group_name=VeilOfIgnorance_Meta-Llama-3-8B-Instruct', 'seed=1']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run legendary-wave-466 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z7c3se9p
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_200734-z7c3se9p/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Meta-Llama-3-8B-Instruct
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+Selected template class: Llama3Chat
+[2025-01-26 20:07:58,721][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.31s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.28s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.87s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_200808-uzo9s66d
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run eager-snow-467
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/uzo9s66d
+Storage name: eager-snow-467-uzo9s66d
+[2025-01-26 20:08:16,056][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:08:17,819][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a', 'group_name=VeilOfIgnorance_Meta-Llama-3-8B-Instruct', 'seed=42']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 🚀 View run eager-snow-467 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/uzo9s66d
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_200808-uzo9s66d/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Meta-Llama-3-8B-Instruct
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+Selected template class: Llama3Chat
+[2025-01-26 20:08:31,171][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.32s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.28s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.87s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_200840-fjgykaew
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dark-thunder-468
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/fjgykaew
+Storage name: dark-thunder-468-fjgykaew
+[2025-01-26 20:08:48,541][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:08:50,296][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a', 'group_name=VeilOfIgnorance_Meta-Llama-3-8B-Instruct', 'seed=100']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 🚀 View run dark-thunder-468 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/fjgykaew
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_200840-fjgykaew/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Meta-Llama-3-8B-Instruct
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 150
+debug: false
+
+Selected template class: Llama3Chat
+[2025-01-26 20:09:03,612][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.32s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.31s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.28s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.87s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_200912-qbi3dc7t
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run lilac-valley-470
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qbi3dc7t
+Storage name: lilac-valley-470-qbi3dc7t
+[2025-01-26 20:09:21,017][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:09:23,521][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a', 'group_name=VeilOfIgnorance_Meta-Llama-3-8B-Instruct', 'seed=150']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run lilac-valley-470 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/qbi3dc7t
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_200912-qbi3dc7t/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Meta-Llama-3-8B-Instruct
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 200
+debug: false
+
+Selected template class: Llama3Chat
+[2025-01-26 20:09:36,129][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.31s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.27s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.61s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.86s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_200945-anfeu7rq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dauntless-universe-472
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/anfeu7rq
+Storage name: dauntless-universe-472-anfeu7rq
+[2025-01-26 20:09:53,404][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:09:54,999][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a', 'group_name=VeilOfIgnorance_Meta-Llama-3-8B-Instruct', 'seed=200']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run dauntless-universe-472 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/anfeu7rq
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_200945-anfeu7rq/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Phi-4
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+Selected template class: Phi4
+[2025-01-26 20:10:12,776][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:05<00:29,  5.82s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:11<00:22,  5.75s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:17<00:17,  5.70s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:22<00:11,  5.64s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:28<00:05,  5.54s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:33<00:00,  5.58s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:33<00:00,  5.62s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_201048-oltpsk6i
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run splendid-bee-475
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/oltpsk6i
+Storage name: splendid-bee-475-oltpsk6i
+[2025-01-26 20:10:56,487][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:10:57,994][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed', 'group_name=VeilOfIgnorance_Phi-4', 'seed=1']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run splendid-bee-475 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/oltpsk6i
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_201048-oltpsk6i/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Phi-4
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+Selected template class: Phi4
+[2025-01-26 20:11:10,471][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.36s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.30s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.27s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.22s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.20s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.22s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.24s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_201125-z8069mku
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run iconic-bee-478
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z8069mku
+Storage name: iconic-bee-478-z8069mku
+[2025-01-26 20:11:33,710][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:11:35,266][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed', 'group_name=VeilOfIgnorance_Phi-4', 'seed=42']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run iconic-bee-478 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/z8069mku
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_201125-z8069mku/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Phi-4
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+Selected template class: Phi4
+[2025-01-26 20:11:47,670][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.39s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.31s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.27s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.22s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.20s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.22s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.24s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_201203-d8axv7vz
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dazzling-firebrand-480
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/d8axv7vz
+Storage name: dazzling-firebrand-480-d8axv7vz
+[2025-01-26 20:12:11,004][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:12:12,530][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed', 'group_name=VeilOfIgnorance_Phi-4', 'seed=100']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.040 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run dazzling-firebrand-480 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/d8axv7vz
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_201203-d8axv7vz/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Phi-4
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 150
+debug: false
+
+Selected template class: Phi4
+[2025-01-26 20:12:24,911][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.36s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.30s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.26s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.21s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.19s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.22s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.23s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_201240-0ce60obt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run swept-sun-482
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/0ce60obt
+Storage name: swept-sun-482-0ce60obt
+[2025-01-26 20:12:48,134][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:12:49,766][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed', 'group_name=VeilOfIgnorance_Phi-4', 'seed=150']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: - 0.024 MB of 0.024 MB uploadedwandb: \ 0.024 MB of 0.038 MB uploadedwandb: | 0.040 MB of 0.040 MB uploadedwandb: 🚀 View run swept-sun-482 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/0ce60obt
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_201240-0ce60obt/logs
+/gpfs/home2/overven/GovSim_v2/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent_veilofignorance
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+    inject_veilofignorance: true
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: VeilOfIgnorance_Phi-4
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 200
+debug: false
+
+Selected template class: Phi4
+[2025-01-26 20:13:02,035][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.36s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:09,  2.30s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:06,  2.26s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:08<00:04,  2.21s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:11<00:02,  2.20s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.22s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:13<00:00,  2.24s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim_v2/wandb/run-20250126_201317-dzg4e59s
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run wise-river-484
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/dzg4e59s
+Storage name: wise-river-484-dzg4e59s
+[2025-01-26 20:13:25,365][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+[2025-01-26 20:13:27,149][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent_veilofignorance', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed', 'group_name=VeilOfIgnorance_Phi-4', 'seed=200']
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim_v2/simulation/main.py", line 63, in main
+    run_scenario_pollution(
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/pollution/run.py", line 75, in run
+    agent_id, obs = env.reset()
+                    ^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 293, in reset
+    return self.agent_selection, self._observe(self.agent_selection)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 229, in _observe
+    state = self._observe_pool(agent)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim_v2/simulation/scenarios/common/environment/concurrent_env.py", line 98, in _observe_pool
+    if self.cfg.inject_systemic:  # Add this block
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.ConfigAttributeError: Key 'inject_systemic' is not in struct
+    full_key: experiment.env.inject_systemic
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 🚀 View run wise-river-484 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/dzg4e59s
+wandb: Synced 7 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250126_201317-dzg4e59s/logs
+
+JOB STATISTICS
+==============
+Job ID: 9616595
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:05:35
+CPU Efficiency: 4.51% of 02:03:54 core-walltime
+Job Wall-clock time: 00:06:53
+Memory Utilized: 4.64 GB
+Memory Efficiency: 3.87% of 120.00 GB

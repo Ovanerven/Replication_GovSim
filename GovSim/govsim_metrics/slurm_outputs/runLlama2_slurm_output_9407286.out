@@ -1,0 +1,301 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: ''
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-chat-hf/snapshots/f5db02db724555f92da89c216ac04704f23d4590
+  backend: transformers
+  is_api: false
+  render: true
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: true
+
+[2025-01-15 16:46:16,343][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:12<00:12, 12.09s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:16<00:00,  7.39s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:16<00:00,  8.09s/it]
+Storage name: dummy-bmu3ryd2-bmu3ryd2
+[2025-01-15 16:46:34,965][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+/home/overven/.local/lib/python3.11/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+[2025-01-15 16:46:37,894][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+/gpfs/home2/overven/GovSim/simulation/utils/models.py:176: RuntimeWarning: An exception occured: Regex \d+ not found in N/A
+
+During the conversation, there is no explicit agreement on a concrete fishing limit that the group agreed to keep. While Kate suggests negotiating with the other fishermen to reduce the total catch for the month, no specific number or range is mentioned. The participants discuss their individual catches and express some disappointment with their own catches, but there is no agreement on a collective limit for the group. Therefore, the answer is N/A.: Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/utils/models.py", line 166, in find
+    lm: Model = previous_lm + pathfinder.find(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/backend.py", line 99, in __add__
+    res, original_res = lm._get_find(value)
+                        ^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/model.py", line 277, in _get_find
+    raise Exception(f"Regex {value.regex} not found in {original_res}")
+Exception: Regex \d+ not found in N/A
+
+During the conversation, there is no explicit agreement on a concrete fishing limit that the group agreed to keep. While Kate suggests negotiating with the other fishermen to reduce the total catch for the month, no specific number or range is mentioned. The participants discuss their individual catches and express some disappointment with their own catches, but there is no agreement on a collective limit for the group. Therefore, the answer is N/A.
+
+Returning default value in find
+  warnings.warn(
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/dummy-bmu3ryd2/.hydra)... Done. 0.0s
+<pathfinder.library.model.Model object at 0x14d82cc82510>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f48850>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f150d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60d0a50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e65cd890>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e645b7d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6431f50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e65cd510>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f15050>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5db0790>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6567650>
+--------------------
+<pathfinder.library.model.Model object at 0x14d82cc82510>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6d5a510>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5d21a10>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5d21a10>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60f28d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e61ef1d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60f1250>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60f28d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6075c90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d82cb72a90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e66c5410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d82d1cca90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6741dd0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f37a90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d84311e550>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6d5a150>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f37c50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f48e50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b0ac90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f37790>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f37c50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f09b90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6076210>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f16bd0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e5f379d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d820a3f2d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cec450>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cecc90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b144d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b08910>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b2a390>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4ced490>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60d0950>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60d0950>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cee3d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4caf550>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b29050>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e7776990>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e605f4d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4ced410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d820a62c50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cac850>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b15610>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b15610>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b2bb90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4caeb10>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b08810>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e65660d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b0a090>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e65af210>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6571150>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cb23d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b08410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e761f8d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d820221950>
+--------------------
+<pathfinder.library.model.Model object at 0x14d82d1cca90>
+--------------------
+<pathfinder.library.model.Model object at 0x14d820221950>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4c88750>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4ced550>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6572410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b14d10>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e60d2810>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b2ba50>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cec510>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cb0110>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e6090750>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e761f8d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b14590>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e761f8d0>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cb3250>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4c88f10>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e605d610>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b14410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e65af210>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b14410>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4b28390>
+--------------------
+<pathfinder.library.model.Model object at 0x14d7e4cad790>
+--------------------
+
+JOB STATISTICS
+==============
+Job ID: 9407286
+Cluster: snellius
+User/Group: overven/overven
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:04:09
+CPU Efficiency: 19.35% of 00:21:27 core-walltime
+Job Wall-clock time: 00:02:23
+Memory Utilized: 2.48 GB
+Memory Efficiency: 4.14% of 60.00 GB

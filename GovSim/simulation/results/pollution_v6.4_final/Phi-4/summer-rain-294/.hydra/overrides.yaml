@@ -1,0 +1,4 @@
+- experiment=pollution_baseline_concurrent
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+- seed=200
+- group_name=Phi-4

@@ -1,0 +1,36 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+Dash is running on http://0.0.0.0:8050/
+
+ * Serving Flask app 'simulation.analysis.app'
+ * Debug mode: on
+slurmstepd: error: *** JOB 9508867 ON gcn46 CANCELLED AT 2025-01-20T14:04:39 DUE TO TIME LIMIT ***
+
+JOB STATISTICS
+==============
+Job ID: 9508867
+Cluster: snellius
+User/Group: overven/overven
+State: TIMEOUT (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:05
+CPU Efficiency: 0.02% of 09:04:12 core-walltime
+Job Wall-clock time: 00:30:14
+Memory Utilized: 366.41 MB
+Memory Efficiency: 0.30% of 120.00 GB

@@ -1,0 +1,32 @@
+model_experiment,average_runtime
+DeepSeek-R1-Distill-Llama-8B (default),00:06:54
+DeepSeek-R1-Distill-Llama-8B (systemic),00:54:30
+DeepSeek-R1-Distill-Llama-8B (universalization),01:00:39
+DeepSeek-R1-Distill-Llama-8B (universalization_alternative),00:54:30
+DeepSeek-R1-Distill-Llama-8B (veil_of_ignorance),01:00:39
+Meta-Llama-2-13B (default),00:04:08
+Meta-Llama-2-7B (default),00:02:49
+Meta-Llama-2-7B (universalization),00:02:59
+Meta-Llama-3-8B (default),00:03:38
+Meta-Llama-3-8B (systemic),00:06:10
+Meta-Llama-3-8B (universalization),00:16:19
+Meta-Llama-3-8B (universalization_alternative),00:24:27
+Meta-Llama-3-8B (veil_of_ignorance),00:10:40
+Mistral-7B-Instruct-v0.2 (default),00:02:59
+Mistral-7B-Instruct-v0.2 (systemic),00:03:16
+Mistral-7B-Instruct-v0.2 (universalization),00:06:00
+Mistral-7B-Instruct-v0.2 (universalization_alternative),00:05:30
+Mistral-7B-Instruct-v0.2 (veil_of_ignorance),00:03:10
+Phi-4 (default),00:25:06
+Phi-4 (systemic),00:30:21
+Phi-4 (universalization),01:00:35
+Phi-4 (universalization_alternative),00:24:27
+Phi-4 (veil_of_ignorance),00:14:31
+Qwen2.5-7B (default),00:18:58
+DeepSeek-R1-Distill-Llama-8B (overall mean),00:47:26
+Meta-Llama-2-13B (overall mean),00:04:08
+Meta-Llama-2-7B (overall mean),00:02:54
+Meta-Llama-3-8B (overall mean),00:12:15
+Mistral-7B-Instruct-v0.2 (overall mean),00:04:11
+Phi-4 (overall mean),00:31:00
+Qwen2.5-7B (overall mean),00:18:58

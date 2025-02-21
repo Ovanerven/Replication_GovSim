@@ -1,0 +1,211 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Could not append to config. An item is already at 'experiment.env.inject_universalization'.
+Either remove + prefix: 'experiment.env.inject_universalization=true'
+Or add a second + to add or override 'experiment.env.inject_universalization': '++experiment.env.inject_universalization=true'
+
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+JOB STATISTICS
+==============
+Job ID: 9554991
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:34
+CPU Efficiency: 4.18% of 00:37:30 core-walltime
+Job Wall-clock time: 00:02:05
+Memory Utilized: 315.60 MB
+Memory Efficiency: 0.26% of 120.00 GB

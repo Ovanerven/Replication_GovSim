@@ -1,0 +1,859 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+Error executing job with overrides: ['experiment=fish_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=1']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+Error executing job with overrides: ['experiment=fish_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=42']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+Error executing job with overrides: ['experiment=fish_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=100']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=1']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=42']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: pollution_${code_version}/${group_name}
+  scenario: pollution
+  env:
+    name: pollution_baseline_concurrent
+    class_name: pollution_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+Error executing job with overrides: ['experiment=pollution_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=100']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+Error executing job with overrides: ['experiment=sheep_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=1']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 42
+debug: false
+
+Error executing job with overrides: ['experiment=sheep_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=42']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: sheep_${code_version}/${group_name}
+  scenario: sheep
+  env:
+    name: sheep_baseline_concurrent
+    class_name: sheep_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: Gemma-2-27B
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 100
+debug: false
+
+Error executing job with overrides: ['experiment=sheep_baseline_concurrent', 'llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--shuyuej--gemma-2-27b-it-GPTQ/snapshots/8cfc6bd0ce71caffd2b6257f2c41fe1b750bb5f8', 'group_name=Gemma-2-27B', 'seed=100']
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 951, in from_pretrained
+    config_class = CONFIG_MAPPING[config_dict["model_type"]]
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 653, in __getitem__
+    raise KeyError(key)
+KeyError: 'gemma2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/GovSim/simulation/main.py", line 27, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/overven/GovSim/pathfinder/library/loader.py", line 110, in get_model
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 953, in from_pretrained
+    raise ValueError(
+ValueError: The checkpoint you are trying to load has model type `gemma2` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+
+JOB STATISTICS
+==============
+Job ID: 9505028
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:01:00
+CPU Efficiency: 8.13% of 00:12:18 core-walltime
+Job Wall-clock time: 00:01:22
+Memory Utilized: 563.55 MB
+Memory Efficiency: 0.92% of 60.00 GB

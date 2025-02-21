@@ -1,0 +1,4 @@
+- experiment=pollution_baseline_concurrent_veilofignorance
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.2/snapshots/3ad372fc79158a2148299e3318516c786aeded6c
+- group_name=VeilOfIgnorance_Mistral-7B-Instruct-v0.2
+- seed=42

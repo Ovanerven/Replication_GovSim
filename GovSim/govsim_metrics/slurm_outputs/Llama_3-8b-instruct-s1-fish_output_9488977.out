@@ -1,0 +1,217 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Appending key for api.wandb.ai to your netrc file: /home/overven/.netrc
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+/gpfs/home2/overven/GovSim/simulation/main.py:87: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/overven/.local/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_baseline_concurrent
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    name: LLM=${llm.path}-S=${experiment.agent.act.harvest_strategy}-Up=${experiment.agent.act.universalization_prompt}-Id=${experiment.agent.act.consider_identity_persona}-T=${llm.temperature}-${llm.top_p}
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v6.4
+group_name: meta-llama--Meta-Llama-3-8B-Instruct_Fish_1
+llm:
+  path: /gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+seed: 1
+debug: false
+
+[2025-01-18 23:36:41,696][accelerate.utils.modeling][INFO] - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:17,  5.69s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:11<00:11,  5.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:17<00:05,  5.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:18<00:00,  4.65s/it]
+wandb: Currently logged in as: oliver-van-erven (oliver-van-erven-university-of-amsterdam). Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.19.4 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.16.1
+wandb: Run data is saved locally in /gpfs/home2/overven/GovSim/wandb/run-20250118_233704-jjffj5o9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run sleek-night-35
+wandb: ⭐️ View project at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS
+wandb: 🚀 View run at https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/jjffj5o9
+Storage name: sleek-night-35-jjffj5o9
+[2025-01-18 23:37:13,429][sentence_transformers.SentenceTransformer][INFO] - Load pretrained SentenceTransformer: mixedbread-ai/mxbai-embed-large-v1
+/home/overven/.local/lib/python3.11/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+[2025-01-18 23:37:16,040][sentence_transformers.SentenceTransformer][INFO] - 2 prompts are loaded, with the keys: ['query', 'passage']
+wandb: Adding directory to artifact (/gpfs/home2/overven/GovSim/simulation/results/fishing_v6.4/meta-llama--Meta-Llama-3-8B-Instruct_Fish_1/sleek-night-35/.hydra)... Done. 0.0s
+wandb: WARNING No program path found, not creating job artifact. See https://docs.wandb.ai/guides/launch/create-job
+wandb: 
+wandb: Run history:
+wandb:     conversation_resource_limit █▁
+wandb:                  experiment/TFS ▁▁▁▁▃▃▃▄▄▄▄▃▄▅▅▅▄▄▄▄▂▂▂▁▃▃▄▄▄▄▅▂▂███▅▅▅▄
+wandb:       experiment/TFS_cumulative ▁▁▁▁▂▂▂▃▃▄▄▄▅▅▅▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▇▇▆▇▇▇▇███
+wandb:  experiment/token_in_cumulative ▁▁▁▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▄▄▄▅▅▅▅▅▅▅▆▆▆▇▇▇█
+wandb: experiment/token_out_cumulative ▁▁▂▂▂▂▂▃▃▃▃▃▃▄▄▄▄▄▄▄▅▅▅▅▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇█
+wandb:                    num_resource ████▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁
+wandb:    persona_0_collected_resource █▁
+wandb:    persona_1_collected_resource █▁
+wandb:    persona_2_collected_resource █▁
+wandb:    persona_3_collected_resource █▁
+wandb:    persona_4_collected_resource █▁
+wandb: 
+wandb: Run summary:
+wandb:     conversation_resource_limit 5
+wandb:                  experiment/TFS 707.37495
+wandb:       experiment/TFS_cumulative 531.00989
+wandb:  experiment/token_in_cumulative 179655
+wandb: experiment/token_out_cumulative 7698
+wandb:                    num_resource 0
+wandb:    persona_0_collected_resource 8
+wandb:    persona_1_collected_resource 6
+wandb:    persona_2_collected_resource 10
+wandb:    persona_3_collected_resource 8
+wandb:    persona_4_collected_resource 8
+wandb: 
+wandb: 🚀 View run sleek-night-35 at: https://wandb.ai/oliver-van-erven-university-of-amsterdam/EMS/runs/jjffj5o9
+wandb: Synced 6 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20250118_233704-jjffj5o9/logs
+Exception in thread Exception in thread NetStatThrIntMsgThr:
+:
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/threading.py", line 1038, in _bootstrap_inner
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/threading.py", line 975, in run
+    self.run()
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 268, in check_network_status
+    self._target(*self._args, **self._kwargs)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 300, in check_internal_messages
+    self._loop_check_status(
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    self._loop_check_status(
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/wandb_run.py", line 224, in _loop_check_status
+    local_handle = request()
+    local_handle = request()
+                   ^^^^^^^^^
+                   ^^^^^^^^^
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 756, in deliver_network_status
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface.py", line 764, in deliver_internal_messages
+    return self._deliver_network_status(status)
+    return self._deliver_internal_messages(internal_message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 484, in _deliver_network_status
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 490, in _deliver_internal_messages
+    return self._deliver_record(record)
+    return self._deliver_record(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 437, in _deliver_record
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_shared.py", line 437, in _deliver_record
+    handle = mailbox._deliver_record(record, interface=self)
+    handle = mailbox._deliver_record(record, interface=self)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/mailbox.py", line 455, in _deliver_record
+    interface._publish(record)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    interface._publish(record)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/interface/interface_sock.py", line 51, in _publish
+    self._sock_client.send_record_publish(record)
+    self._sock_client.send_record_publish(record)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 221, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self.send_server_request(server_req)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 155, in send_server_request
+    self._send_message(msg)
+    self._send_message(msg)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 152, in _send_message
+    self._sendall_with_error_handle(header + data)
+    self._sendall_with_error_handle(header + data)
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+  File "/home/overven/.local/lib/python3.11/site-packages/wandb/sdk/lib/sock_client.py", line 130, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+    sent = self._sock.send(data)
+           ^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+BrokenPipeError: [Errno 32] Broken pipe
+
+JOB STATISTICS
+==============
+Job ID: 9488977
+Cluster: snellius
+User/Group: overven/overven
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:12:28
+CPU Efficiency: 19.60% of 01:03:36 core-walltime
+Job Wall-clock time: 00:07:04
+Memory Utilized: 4.44 GB
+Memory Efficiency: 7.41% of 60.00 GB

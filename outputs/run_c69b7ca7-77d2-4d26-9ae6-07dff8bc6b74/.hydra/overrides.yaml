@@ -1,0 +1,2 @@
+- experiment=fish_baseline_concurrent
+- llm.path=/gpfs/home2/overven/GovSim/huggingface/hub/models--meta-llama--Llama-2-7b-chat/snapshots/617522e5466cec3391aac2de97f4f9d5672ed05b

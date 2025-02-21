@@ -1,0 +1,32 @@
+Python current working directory: /gpfs/home2/overven
+
+Checking snapshot directory contents:
+['tokenizer.model', 'model-00003-of-00004.safetensors', 'model-00002-of-00004.safetensors', 'config.json', 'model-00004-of-00004.safetensors', 'tokenizer_config.json', 'model.safetensors.index.json', 'special_tokens_map.json', 'quantize_config.json', 'tokenizer.json', 'generation_config.json', 'model-00001-of-00004.safetensors']
+
+Checking .no_exist directory contents:
+['model.safetensors', 'chat_template.jinja', 'adapter_config.json', 'added_tokens.json']
+
+Step 1: Loading tokenizer...
+Tokenizer loaded successfully!
+
+Step 2: Loading model...
+Error loading from snapshot_path: transformers.models.auto.auto_factory._BaseAutoModelClass.from_pretrained() got multiple values for keyword argument 'torch_dtype'
+
+Trying .no_exist path...
+Error loading from no_exist_path: 'torch_dtype'
+
+Trying direct HF load...
+
+JOB STATISTICS
+==============
+Job ID: 9515771
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:13
+CPU Efficiency: 3.61% of 00:06:00 core-walltime
+Job Wall-clock time: 00:00:20
+Memory Utilized: 2.17 MB
+Memory Efficiency: 0.00% of 60.00 GB

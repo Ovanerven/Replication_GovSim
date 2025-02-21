@@ -1,0 +1,4 @@
+- experiment=pollution_baseline_concurrent
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+- group_name=DeepSeek-R1-Distill-Llama-8B
+- seed=200

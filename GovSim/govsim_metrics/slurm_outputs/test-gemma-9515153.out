@@ -1,0 +1,22 @@
+CUDA available: True
+CUDA device count: 1
+CUDA device name: NVIDIA A100-SXM4-40GB
+
+Step 1: Loading tokenizer...
+Tokenizer loaded successfully!
+
+Step 2: Loading model...
+
+JOB STATISTICS
+==============
+Job ID: 9515153
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:14
+CPU Efficiency: 3.89% of 00:06:00 core-walltime
+Job Wall-clock time: 00:00:20
+Memory Utilized: 2.03 MB
+Memory Efficiency: 0.00% of 60.00 GB

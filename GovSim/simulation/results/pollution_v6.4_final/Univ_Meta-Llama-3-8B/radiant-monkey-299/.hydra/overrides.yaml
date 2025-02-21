@@ -1,0 +1,5 @@
+- experiment=pollution_baseline_concurrent_universalization
+- experiment.agent.act.universalization_prompt=true
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a
+- group_name=Univ_Meta-Llama-3-8B
+- seed=42

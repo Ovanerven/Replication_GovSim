@@ -1,0 +1,56 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Starting download/verification for shuyuej/gemma-2-27b-it-GPTQ
+
+Checking tokenizer...
+✓ Tokenizer ready
+
+Checking model files...
+Downloading shards:   0%|          | 0/4 [00:00<?, ?it/s]Downloading shards:  25%|██▌       | 1/4 [02:08<06:24, 128.09s/it]Downloading shards:  50%|█████     | 2/4 [04:17<04:17, 128.71s/it]Downloading shards:  75%|███████▌  | 3/4 [06:27<02:09, 129.47s/it]Downloading shards: 100%|██████████| 4/4 [07:24<00:00, 100.66s/it]Downloading shards: 100%|██████████| 4/4 [07:24<00:00, 111.02s/it]
+/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/modeling_utils.py:4773: FutureWarning: `_is_quantized_training_enabled` is going to be deprecated in transformers 4.39.0. Please use `model.hf_quantizer.is_trainable` instead
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/home2/overven/install_script.py", line 16, in <module>
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4008, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4476, in _load_pretrained_model
+    state_dict = load_state_dict(shard_file, is_quantized=is_quantized)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/overven/.conda/envs/GovComGPTQ/lib/python3.11/site-packages/transformers/modeling_utils.py", line 551, in load_state_dict
+    if metadata.get("format") not in ["pt", "tf", "flax", "mlx"]:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+JOB STATISTICS
+==============
+Job ID: 9517458
+Cluster: snellius
+User/Group: overven/overven
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:34
+CPU Efficiency: 0.80% of 01:10:57 core-walltime
+Job Wall-clock time: 00:07:53
+Memory Utilized: 430.26 MB
+Memory Efficiency: 0.70% of 60.00 GB

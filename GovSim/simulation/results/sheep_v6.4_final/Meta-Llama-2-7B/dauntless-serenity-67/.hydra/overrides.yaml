@@ -1,0 +1,4 @@
+- experiment=sheep_baseline_concurrent
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--meta-llama--Llama-2-7b-chat-hf/snapshots/f5db02db724555f92da89c216ac04704f23d4590
+- seed=100
+- group_name=Meta-Llama-2-7B

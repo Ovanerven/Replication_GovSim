@@ -1,0 +1,5 @@
+- experiment=pollution_baseline_concurrent
+- +experiment.universalization=true
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--Qwen--Qwen2.5-Math-7B/snapshots/b101308fe89651ea5ce025f25317fea6fc07e96e
+- group_name=Univ_Qwen2.5-7B
+- seed=200

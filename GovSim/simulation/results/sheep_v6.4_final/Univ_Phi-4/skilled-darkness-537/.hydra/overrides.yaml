@@ -1,0 +1,5 @@
+- experiment=sheep_baseline_concurrent_universalization
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed
+- seed=1
+- group_name=Phi-4-Univ
+- experiment.agent.act.universalization_prompt=true

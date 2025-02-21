@@ -1,0 +1,9 @@
+defaults:
+  - fish_baseline_concurrent
+
+env:
+  name: fish_baseline_concurrent_universalization
+  inject_universalization: true
+
+agent:
+  cot_prompt: concise  # This is the correct placement

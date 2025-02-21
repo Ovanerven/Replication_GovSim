@@ -1,0 +1,6 @@
+- experiment=fish_baseline_concurrent_universalization_alternative
+- llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--deepseek-ai--DeepSeek-R1-Distill-Llama-8B/snapshots/30e697b4062025b8537b49d529b5c0cedf12a660
+- group_name=Univ_alt_DeepSeek-R1-Distill-Llama-8B
+- llm.temperature=0.7
+- llm.top_p=0.95
+- seed=1

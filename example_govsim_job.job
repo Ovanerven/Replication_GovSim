@@ -1,0 +1,122 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu_a100      # Use the MIG GPU partition
+#SBATCH --gpus=1                 # Request 1 GPU
+#SBATCH --job-name=runPhi4Univ   # Name of the job
+#SBATCH --ntasks=1               # Number of tasks
+#SBATCH --cpus-per-task=9        # Number of CPU cores per task
+#SBATCH --time=10:00:00          # Maximum runtime (2 hours)
+#SBATCH --output=Phi4Univ_slurm_output_%A.out # Output log file
+
+# EXAMPLE JOB FILE FOR A FULL 15 TRIAL RUN OF PHI-4 ON THE UNIVERSALIZATION EXPERIMENT
+
+# Load the necessary modules
+module purge
+module load 2024
+module load Anaconda3/2024.06-1
+
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# Activate your Conda environment
+source activate GovComGPTQ
+
+# Set WandB API Key
+export WANDB_API_KEY=d7c4c0d5cea2d3c3143bea851765b771b96e76e8
+
+wandb login $WANDB_API_KEY
+
+wandb login
+
+# Navigate to your home directory or project folder
+cd GovSim  # Replace with the correct path
+
+Run the Python script to load the model
+python3 -m simulation.main experiment=pollution_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=1 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=pollution_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=42 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=pollution_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=100 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=pollution_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=150 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=pollution_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=200 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=fish_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=1 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=fish_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=42 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=fish_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=100 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=fish_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=150 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=fish_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=200 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=sheep_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=1 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=sheep_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=42 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=sheep_baseline_concurrent_universalization\
+    llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+    seed=100 \
+    group_name=Phi-4-Univ \
+    experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=sheep_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=150 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
+
+python3 -m simulation.main experiment=sheep_baseline_concurrent_universalization\
+   llm.path=/gpfs/home2/overven/.cache/huggingface/hub/models--microsoft--phi-4/snapshots/f957856cd926f9d681b14153374d755dd97e45ed \
+   seed=200 \
+   group_name=Phi-4-Univ \
+   experiment.agent.act.universalization_prompt=true \
